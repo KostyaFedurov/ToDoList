@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "916821533023",
+    "firebase_url": "https://todolist-f3523.firebaseio.com",
+    "project_id": "todolist-f3523",
+    "storage_bucket": "todolist-f3523.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:916821533023:android:5ec041daa2df2c61fc96ea",
+        "android_client_info": {
+          "package_name": "ru.fedurovkostya.todolist"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "916821533023-hp50081kj6feto8vfapgcokr8ofr4cob.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsZYDA1OqVdo31oa5GOIzFps_Nl0PAcFA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "916821533023-hp50081kj6feto8vfapgcokr8ofr4cob.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

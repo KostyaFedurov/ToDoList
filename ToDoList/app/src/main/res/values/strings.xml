@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">ToDoList</string>
     <string name="about_us">О нас</string>
+    <string name="facebook_app_id">992575777810682</string>
+    <string name="fb_login_protocol_scheme">fb992575777810682</string>
 </resources>

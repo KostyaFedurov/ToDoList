@@ -1,8 +1,8 @@
 package ru.fedurovkostya.todolist.Other
-
-const val DB_NAME = "ToDoList_main_9"
+// Файл, в котором хранятся константы для базы данных.
+const val DB_NAME = "ToDoList_main_9"  // Название базы данных.
 const val TABLE_TASK = "Task"
-const val DB_VERSION = 1
+const val DB_VERSION = 1  // Версия базы данных.
 
 const val COL_ID = "id"
 const val COL_NAME = "name"

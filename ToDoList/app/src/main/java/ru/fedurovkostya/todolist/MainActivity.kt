@@ -8,9 +8,11 @@ import android.os.Handler
 import android.view.View
 import androidx.annotation.RequiresApi
 import kotlinx.android.synthetic.main.activity_main.*
-
+// Класс заставки.
 class MainActivity : AppCompatActivity() {
-
+    /* После запуска приложения появляется заставка.
+    Через 1000 миллисекунд запускается главное окно activity_task
+    со списком задач. */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)

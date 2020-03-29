@@ -31,8 +31,10 @@ class TaskActivity : AppCompatActivity() {
         setContentView(R.layout.activity_task)
         dbHelper = DBHelper(this)
         context = this
+        // Менеджер расскладки
         rv_task.layoutManager = LinearLayoutManager(this)
-        fab_task.setOnClickListener({
+            // пользовательский диалог для добавления задачи
+        fab_task.setOnClickListener {
             val dialog = BottomSheetDialog(this)
             val view = layoutInflater.inflate(R.layout.activity_dialog_edit,null)
             var et_name = view.findViewById<EditText>(R.id.et_dialog_name)
@@ -47,27 +49,30 @@ class TaskActivity : AppCompatActivity() {
                 var task = Task()
                 task.name = et_name.text.toString()
                 task.description = et_description.text.toString()
+                // Проверка заносимого текста
                 if(cb_priority.isChecked){
                     task.color = this.resources.getColor(R.color.colorAccent)
-                }
-                else{
+                } else{
                     task.color = this.resources.getColor(R.color.textColorPrimary)
                 }
                 dbHelper.addTask(task)
                 refreshList()
                 dialog.dismiss()
             }
+            // Вызов конпки отмены
             dialog.setContentView(view)
+            // Вызов метода show
             dialog.show()
-        })
+        }
     }
-
+// При добавлении нового элемента вызывается этот метод
     fun refreshList(){
         val itemTouchHelper = ItemTouchHelper(itemTouchHelperCallback)
         itemTouchHelper.attachToRecyclerView(rv_task)
         rv_task.adapter = TaskAdapter(this,dbHelper.getTasks())
         hideFab()
     }
+    // Скрывает кнопку, если больше пяти записей
     fun hideFab(){
         if(dbHelper.getTasks().size == 0){
             iv_main.visibility = View.VISIBLE
@@ -82,11 +87,12 @@ class TaskActivity : AppCompatActivity() {
             fab_task.show()
         }
     }
-
+// При открытии приложения вызывается этот метод
     override fun onResume() {
         refreshList()
         super.onResume()
     }
+    // Возможно свайпа вправо или влево
     val itemTouchHelperCallback = object : ItemTouchHelper.SimpleCallback(0,
         ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT){
         override fun onMove(
@@ -96,6 +102,7 @@ class TaskActivity : AppCompatActivity() {
         ): Boolean {
             return false
         }
+        // Удаление записи свайпом
         override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
             var task = dbHelper.getTasks()[viewHolder.adapterPosition]
             dbHelper.deleteTask(task.id)

@@ -14,7 +14,7 @@ import ru.fedurovkostya.todolist.Other.Task
 
 class TaskAdapter(val activity: TaskActivity, var list:MutableList<Task>): RecyclerView.Adapter<TaskAdapter.ViewHolder>(){
 
-
+// Возвращает размер RecyclerView
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
             LayoutInflater.from(activity).inflate(
@@ -24,22 +24,25 @@ class TaskAdapter(val activity: TaskActivity, var list:MutableList<Task>): Recyc
             )
         )
     }
-
+// Возвращает размер списка
     override fun getItemCount(): Int {
         return list.size
     }
-
+// Вызывается при взаимодействии с элементом
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    // задается имя и размер
         setSizeOfTask(activity,holder)
         holder.tv_task.text = list[position].name
+    // Если цвет равен акцентному, устанавливаем другой цвет
         if(list[position].color == activity.resources.getColor(R.color.colorAccent)){
             holder.iv_task.setColorFilter(activity.resources.getColor(R.color.colorAccent))
         }
-        holder.iv_task.setOnClickListener({
+        holder.iv_task.setOnClickListener {
             activity.dbHelper.deleteTask(list[position].id)
             activity.refreshList()
-        })
-        holder.ll_task.setOnClickListener({
+        }
+            // Реакция на нажати кнопки открывает диалоговое окно
+        holder.ll_task.setOnClickListener {
             val dialog = BottomSheetDialog(activity)
             val view = activity.layoutInflater.inflate(R.layout.activity_dialog_edit,null)
             var et_name = view.findViewById<EditText>(R.id.et_dialog_name)
@@ -62,8 +65,7 @@ class TaskAdapter(val activity: TaskActivity, var list:MutableList<Task>): Recyc
                 task.description = et_description.text.toString()
                 if(cb_priority.isChecked){
                     task.color = activity.resources.getColor(R.color.colorAccent)
-                }
-                else{
+                } else{
                     task.color = activity.resources.getColor(R.color.textColorPrimary)
                 }
                 activity.dbHelper.updateTask(task)
@@ -72,9 +74,9 @@ class TaskAdapter(val activity: TaskActivity, var list:MutableList<Task>): Recyc
             }
             dialog.setContentView(view)
             dialog.show()
-        })
+        }
     }
-
+// Установка размера задачи
     fun setSizeOfTask(activity: TaskActivity, holder: ViewHolder){
         var statusBarHeight = 0
         val resourceId = activity.resources.getIdentifier("status_bar_height", "dimen", "android")
@@ -87,7 +89,8 @@ class TaskAdapter(val activity: TaskActivity, var list:MutableList<Task>): Recyc
                 activity.ll_top.layoutParams.height-statusBarHeight-70) / 6
         holder.ll_task.getLayoutParams().height = deviceheight
     }
-
+    // Показ меню ресурсов в всплывающем окне
+    // Инициализация элемнетов
     class ViewHolder(v: View): RecyclerView.ViewHolder(v){
         val tv_task: TextView = v.findViewById(R.id.tv_task)
         val iv_task: ImageView = v.findViewById(R.id.iv_task)

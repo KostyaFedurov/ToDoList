@@ -1,5 +1,5 @@
 package ru.fedurovkostya.todolist.Other
-
+//класс с константами, который позволяет удобно работать с бд из любого места
 const val DB_NAME = "ToDoList_main_9"
 const val TABLE_TASK = "Task"
 const val DB_VERSION = 1

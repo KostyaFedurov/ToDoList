@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
 import java.util.concurrent.atomic.AtomicInteger
-
+//класс непосредственно отвечающий за работу с базой данных SQLite
 class DBHelper(val context: Context): SQLiteOpenHelper(context,
     DB_NAME,null,
     DB_VERSION
@@ -37,7 +37,7 @@ class DBHelper(val context: Context): SQLiteOpenHelper(context,
         val result = db.insert(TABLE_TASK,null,cv)
         return result != (-1).toLong()
     }
-    //обновление задачи
+    //обновление задачи по id
     fun updateTask(task: Task){
         val db = writableDatabase
         val cv = ContentValues()
@@ -46,13 +46,13 @@ class DBHelper(val context: Context): SQLiteOpenHelper(context,
         cv.put(COL_COLOR,task.color)
         db.update(TABLE_TASK,cv,"$COL_ID=?", arrayOf(task.id.toString()))
     }
-    //удаление задачи
+    //удаляет задачу по её id
     fun deleteTask(taskId:Long){
         Log.d("Tag","deleteTask")
         val db = writableDatabase
         db.delete(TABLE_TASK,"$COL_ID=?", arrayOf(taskId.toString()))
     }
-    //получение задч
+    //возвращает задачи, для их отображения
     fun getTasks():MutableList<Task>{
         Log.d("Tag","getTasks")
         var result:MutableList<Task> = ArrayList()

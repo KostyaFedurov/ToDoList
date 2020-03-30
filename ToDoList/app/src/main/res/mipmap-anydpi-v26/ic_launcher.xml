@@ -1,4 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+В разделе mipmap хранятся изображения иконок приложения
+для разных версий Android.
+Иконки делятся на два типа: круглые и квадратные.
+Каждые на 5 размеров:
+    48x48
+    72x72
+    96x96
+    144x144
+    192x192
+У разных версий Android используются разные иконки.
+-->
 <adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
     <background android:drawable="@color/ic_launcher_background"/>
     <foreground android:drawable="@drawable/ic_launcher_foreground"/>
